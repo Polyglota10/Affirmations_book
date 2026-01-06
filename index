@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sunlit Inner Critic Rebuttals</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<style>
+  :root {
+    --sun-bg-top: #ffe9c7;
+    --sun-bg-bottom: #fff7e8;
+    --card-bg: #fffaf2;
+    --accent: #f59e0b;
+    --accent-deep: #ea580c;
+    --accent-soft: #ffedd5;
+    --text-main: #422006;
+    --text-soft: #92400e;
+    --border-soft: rgba(248, 190, 98, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: radial-gradient(circle at top, #ffe3b3, #fff7e8 55%, #ffffff);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-main);
+  }
+
+  .widget {
+    position: relative;
+    width: min(520px, 100%);
+    background: linear-gradient(to bottom, var(--sun-bg-top), var(--sun-bg-bottom));
+    border-radius: 26px;
+    padding: 1.2rem 1.25rem 1.35rem;
+    border: 1px solid var(--border-soft);
+    box-shadow:
+      0 18px 40px rgba(248, 196, 113, 0.55),
+      0 0 0 2px rgba(255, 248, 235, 0.75);
+    overflow: hidden;
+  }
+
+  .widget::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background:
+      radial-gradient(circle at 10% -10%, rgba(255,255,255,0.9), transparent 55%),
+      radial-gradient(circle at 90% 0%, rgba(254,249,195,0.8), transparent 55%);
+    opacity: 0.95;
+    pointer-events: none;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .6rem;
+    margin-bottom: .75rem;
+  }
+
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  .sun-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 20%, #fff7d6, #fdba74);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 22px rgba(248, 181, 81, 0.8);
+    border: 1px solid rgba(234, 88, 12, 0.5);
+    font-size: 1.2rem;
+  }
+
+  .title {
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+
+  .badge {
+    padding: .3rem .7rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(251, 191, 36, 0.7);
+    color: var(--text-soft);
+    font-size: .7rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .card {
+    margin-top: .4rem;
+    background: radial-gradient(circle at top, #ffffff, var(--card-bg) 65%);
+    border-radius: 20px;
+    border: 1px dashed rgba(245, 158, 11, 0.7);
+    padding: 1rem .9rem 1rem;
+    position: relative;
+    min-height: 90px;
+  }
+
+  .card::before {
+    content: "☀";
+    position: absolute;
+    top: .5rem;
+    right: .8rem;
+    color: rgba(234, 88, 12, 0.4);
+    font-size: 1.2rem;
+  }
+
+  .intention {
+    font-size: 1rem;
+    line-height: 1.45;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .28s ease, transform .28s ease;
+  }
+
+  .intention.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .button-bar {
+    margin-top: .65rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  button {
+    border-radius: 999px;
+    border: 1px solid rgba(248, 181, 81, 0.9);
+    padding: .45rem .95rem;
+    font-size: .8rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(135deg, #fed7aa, #fb923c);
+    color: #7c2d12;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    box-shadow: 0 12px 22px rgba(249, 176, 63, 0.75);
+    transition: transform .08s ease, box-shadow .12s ease, filter .1s ease;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+  }
+
+  button:active {
+    transform: translateY(1px) scale(.985);
+    box-shadow: 0 6px 13px rgba(249, 176, 63, 0.7);
+  }
+
+  .cite {
+    margin-top: .7rem;
+    font-size: .7rem;
+    color: var(--text-soft);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .cite span {
+    font-style: italic;
+  }
+
+  @media (max-width: 480px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .badge {
+      align-self: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="widget">
+  <div class="inner">
+    <div class="header">
+      <div class="title-wrap">
+        <div class="sun-icon">☀️</div>
+        <div class="title">Sunlit Recovery Intentions</div>
+      </div>
+      <div class="badge">inner critic rebuttals</div>
+    </div>
+
+    <div class="card">
+      <div id="intentionText" class="intention"></div>
+    </div>
+
+    <div class="button-bar">
+      <button id="nextBtn">🌞 New sunbeam</button>
+    </div>
+
+    <div class="cite">
+      Adapted from the “14 Common Inner Critic Attacks” section —<br />
+      <span>Pete Walker, from the book <em>Complex PTSD: From Surviving to Thriving</em></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Paraphrased recovery affirmations inspired by Pete Walker's
+  // "14 Common Inner Critic Attacks" (Complex PTSD: From Surviving to Thriving)
+  const INTENTIONS = [
+    "My perfectionism once tried to protect me, but I don’t need to be perfect to be safe or loved now.",
+    "I let go of all-or-nothing judgments. One hard moment does not define my whole life or my worth.",
+    "I choose to stand on my own side. I am a good-enough person, even when I struggle or have big feelings.",
+    "I give myself permission to stop overthinking and catastrophizing. I can aim for “good enough” instead of perfect control.",
+    "I refuse to measure myself against idealized versions of others. I only need to be authentically and gently myself.",
+    "Feeling guilty does not automatically mean I’ve done something wrong. I can make amends when needed and then release the guilt.",
+    "I loosen the heavy “shoulds” on my back and listen more closely to what I truly want and need.",
+    "I stop joining the voices that attacked me in the past. Their harshness does not get to live in my mind anymore.",
+    "I no longer assume that everyone will reject or attack me. Many people are capable of care, fairness and safety.",
+    "I can notice fear without believing all its worst-case stories. Most of the time, I am not actually in danger right now.",
+    "I let go of scanning for flaws in myself and others. It is safe to notice what is working and what is kind.",
+    "I release urgency and self-pressure. I can slow down, rest, and still be a worthy person.",
+    "I treat my mistakes and vulnerabilities with warmth instead of contempt. They are places that most need my kindness.",
+    "I remember that I am allowed to ask for help and comfort; healing does not mean I have to do everything alone."
+  ];
+
+  const textEl = document.getElementById("intentionText");
+  const buttonEl = document.getElementById("nextBtn");
+
+  let deck = [];
+  let index = 0;
+
+  function shuffleDeck() {
+    deck = [...INTENTIONS];
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    index = 0;
+  }
+
+  function showNext() {
+    if (index >= deck.length) {
+      shuffleDeck();
+    }
+
+    const text = deck[index];
+    index++;
+
+    textEl.classList.remove("show");
+    setTimeout(() => {
+      textEl.textContent = text;
+      textEl.classList.add("show");
+    }, 20);
+  }
+
+  // Only advance when button is clicked
+  buttonEl.addEventListener("click", showNext);
+
+  // Initial prompt before any intention is shown
+  textEl.textContent = "Click the sunbeam button to receive a gentle rebuttal to the inner critic. ☀️";
+  textEl.classList.add("show");
+
+  // Prepare first shuffled order (no auto-show)
+  shuffleDeck();
+</script>
+
+</body>
+</html>
